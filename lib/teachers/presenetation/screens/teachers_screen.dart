@@ -44,11 +44,15 @@ class TeachersScreen extends StatelessWidget {
                         children: [
                           ListTile(
                             leading: CircleAvatar(
+                              backgroundColor: Color(0xff29a4d9),
                               backgroundImage: teacher.profileImageUrl != null
                                   ? NetworkImage(teacher.profileImageUrl!)
                                   : null,
                               child: teacher.profileImageUrl == null
-                                  ? const Icon(Icons.person)
+                                  ? const Icon(
+                                      Icons.person,
+                                      color: Colors.white,
+                                    )
                                   : null,
                             ),
                             title: Text(teacher.name),
@@ -56,7 +60,6 @@ class TeachersScreen extends StatelessWidget {
                               'Tap to view lessons (after approval)',
                             ),
                             onTap: () {
-                              // منطق الانتقال إلى شاشة الدروس يبقى كما هو
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (_) => LessonsScreen(
@@ -69,21 +72,23 @@ class TeachersScreen extends StatelessWidget {
                               );
                             },
                           ),
-                          // *** 2. أضف هذا الزر الجديد ***
                           Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 16.0,
                             ),
                             child: ElevatedButton.icon(
                               style: ElevatedButton.styleFrom(
-                                minimumSize: const Size.fromHeight(
-                                  40,
-                                ), // لجعل الزر يمتد
+                                minimumSize: const Size.fromHeight(40),
                               ),
-                              icon: const Icon(Icons.add_circle_outline),
-                              label: const Text('Request to Join'),
+                              icon: const Icon(
+                                Icons.add_circle_outline,
+                                color: Color(0xff29a4d9),
+                              ),
+                              label: const Text(
+                                'Request to Join',
+                                style: TextStyle(color: Color(0xff29a4d9)),
+                              ),
                               onPressed: () async {
-                                // إظهار loading indicator
                                 showDialog(
                                   context: context,
                                   barrierDismissible: false,
@@ -93,13 +98,11 @@ class TeachersScreen extends StatelessWidget {
                                 );
 
                                 try {
-                                  // استدعاء دالة طلب الانضمام
                                   final message = await context
                                       .read<TeacherCubit>()
                                       .requestToJoin(subjectId, teacher.id);
-                                  Navigator.pop(context); // إغلاق الـ loading
+                                  Navigator.pop(context);
 
-                                  // إظهار رسالة النجاح
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(message),
@@ -107,9 +110,8 @@ class TeachersScreen extends StatelessWidget {
                                     ),
                                   );
                                 } catch (e) {
-                                  Navigator.pop(context); // إغلاق الـ loading
+                                  Navigator.pop(context);
 
-                                  // إظهار رسالة الخطأ
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(e.toString()),

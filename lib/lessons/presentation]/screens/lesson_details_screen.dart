@@ -85,7 +85,7 @@ class LessonDetailsScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF8B5CF6),
+            backgroundColor: const Color(0xff29a4d9),
             padding: const EdgeInsets.symmetric(vertical: 16),
           ),
           onPressed: () {

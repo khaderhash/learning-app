@@ -72,7 +72,10 @@ class LessonsScreen extends StatelessWidget {
                             content: const Text('What would you like to do?'),
                             actions: <Widget>[
                               TextButton(
-                                child: const Text('Browse Questions'),
+                                child: const Text(
+                                  'Browse Questions',
+                                  style: TextStyle(color: Color(0xff29a4d9)),
+                                ),
                                 onPressed: () {
                                   Navigator.of(dialogContext).pop();
                                   Navigator.of(context).push(
@@ -86,7 +89,10 @@ class LessonsScreen extends StatelessWidget {
                                 },
                               ),
                               TextButton(
-                                child: const Text('Watch Video'),
+                                child: const Text(
+                                  'Watch Video',
+                                  style: TextStyle(color: Color(0xff29a4d9)),
+                                ),
                                 onPressed: () {
                                   Navigator.of(dialogContext).pop();
                                   Navigator.of(context).push(
@@ -98,7 +104,10 @@ class LessonsScreen extends StatelessWidget {
                                 },
                               ),
                               ElevatedButton(
-                                child: const Text('Start Test'),
+                                child: const Text(
+                                  'Start Test',
+                                  style: TextStyle(color: Color(0xff29a4d9)),
+                                ),
                                 onPressed: () {
                                   Navigator.of(dialogContext).pop();
                                   Navigator.of(context).push(

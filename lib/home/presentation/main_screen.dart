@@ -32,7 +32,7 @@ class _MainScreenState extends State<MainScreen> {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           onTap: _onTabTapped,
-          selectedItemColor: const Color(0xFF8B5CF6),
+          selectedItemColor: const Color(0xFF29a4d9),
           unselectedItemColor: Colors.grey,
           items: const [
             BottomNavigationBarItem(

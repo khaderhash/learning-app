@@ -75,7 +75,7 @@ class LoginScreen extends StatelessWidget {
                     height: MediaQuery.of(context).size.height * .06,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF8A4DFF),
+                        backgroundColor: const Color(0xff29a4d9),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -113,7 +113,7 @@ class LoginScreen extends StatelessWidget {
                           TextSpan(
                             text: 'Sign up',
                             style: TextStyle(
-                              color: Color(0xFF8A4DFF),
+                              color: Color(0xff29a4d9),
                               fontWeight: FontWeight.bold,
                               // decoration: TextDecoration.underline,
                             ),
