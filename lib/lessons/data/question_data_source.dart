@@ -12,16 +12,24 @@ class QuestionDataSource {
       final token = await _storageService.getToken();
       final response = await _dio.get(
         '$_baseUrl/get/questions/options/$lessonId',
-        options: Options(headers: {'Authorization': 'Bearer $token'}),
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+            'Accept': 'application/json',
+          },
+        ),
       );
 
       final List<dynamic> questionsJson = response.data;
       return questionsJson.map((json) => Question.fromJson(json)).toList();
     } on DioException catch (e) {
-      if (e.response != null) {
-        throw Exception(e.response?.data['message'] ?? 'An error occurred');
+      if (e.response?.statusCode == 404) {
+        return [];
       }
-      throw Exception('Failed to connect to the server.');
+      print(
+        'Failed to load browseable questions: ${e.response?.data ?? e.message}',
+      );
+      throw Exception('Failed to load questions');
     }
   }
 }

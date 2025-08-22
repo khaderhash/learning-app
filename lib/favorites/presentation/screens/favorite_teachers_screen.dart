@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../cubit/favorites_cubit.dart';
 import '../cubit/favorites_state.dart';
+import 'favorite_tests_screen.dart';
 
 class FavoriteTeachersScreen extends StatelessWidget {
   const FavoriteTeachersScreen({Key? key}) : super(key: key);
@@ -38,7 +39,14 @@ class FavoriteTeachersScreen extends StatelessWidget {
                       title: Text(teacher.name),
                       trailing: const Icon(Icons.arrow_forward_ios),
                       onTap: () {
-                        // Navigator.of(context).push(...);
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => FavoriteTestsScreen(
+                              teacherId: teacher.id,
+                              teacherName: teacher.name,
+                            ),
+                          ),
+                        );
                       },
                     ),
                   );

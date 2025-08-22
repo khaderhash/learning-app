@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../profile/presentation/cubit/profile_cubit.dart';
 import '../../profile/presentation/cubit/profile_state.dart';
+import '../../quiz/presentation/screens/create_custom_test_screen.dart';
 import '../../quiz/presentation/screens/my_tests_screen.dart';
 import '../../favorites/presentation/screens/favorite_teachers_screen.dart';
 import '../../subject/presentation/screens/subject_screen.dart';
@@ -75,6 +76,17 @@ class HomePage extends StatelessWidget {
                           );
                         },
                       ),
+                      // _buildDashboardCard(
+                      //   context,
+                      //   icon: Icons.add_task,
+                      //   title: 'Create Custom Test',
+                      //   subtitle: 'Build your own quiz from any lesson',
+                      //   onTap: () {
+                      //     Navigator.of(context).push(MaterialPageRoute(
+                      //       builder: (_) => const CreateCustomTestScreen(),
+                      //     ));
+                      //   },
+                      // ),
                     ],
                   ),
                 );

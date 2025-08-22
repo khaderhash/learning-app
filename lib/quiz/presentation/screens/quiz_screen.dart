@@ -39,7 +39,7 @@ class _QuizScreenState extends State<QuizScreen> {
       create: (context) {
         final cubit = QuizCubit();
         if (widget.lessonId != null) {
-          cubit.startTest(lessonId: widget.lessonId!);
+          cubit.startTestForSingleLesson(lessonId: widget.lessonId!);
         } else if (widget.testSession != null) {
           cubit.startExistingTest(widget.testSession!);
         }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:student_app/quiz/data/test_history_model.dart';
 import 'quiz_models.dart';
@@ -8,19 +10,37 @@ class QuizDataSource {
   final String _baseUrl = 'http://10.0.2.2:8000/api';
   final SecureStorageService _storageService = SecureStorageService();
 
-  Future<TestSession> createTest(int lessonId, int questionsCount) async {
+  Future<TestSession> createTest(
+    List<int> lessonIds,
+    int questionsCount,
+  ) async {
     try {
       final token = await _storageService.getToken();
+      if (token == null) {
+        throw Exception('Authentication Token not found. Please log in again.');
+      }
+
       final formData = FormData.fromMap({
-        'lesson_ids': '[$lessonId]',
-        'questions_count': questionsCount,
+        'lesson_ids': jsonEncode(lessonIds),
+        'questions_count': questionsCount.toString(),
       });
 
       final response = await _dio.post(
         '$_baseUrl/create/test/student',
         data: formData,
-        options: Options(headers: {'Authorization': 'Bearer $token'}),
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+            'Accept': 'application/json',
+          },
+        ),
       );
+
+      if (response.statusCode != 201) {
+        throw Exception(
+          'Server returned an unexpected status code: ${response.statusCode}',
+        );
+      }
 
       final testData = response.data['test'];
       final questionsData = response.data['questions'] as List;
@@ -30,7 +50,8 @@ class QuizDataSource {
         questions: questionsData.map((q) => Question.fromJson(q)).toList(),
       );
     } catch (e) {
-      throw Exception('Failed to create test: $e');
+      print('An unexpected error occurred: $e');
+      throw Exception('An unexpected error occurred while creating the test.');
     }
   }
 

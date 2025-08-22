@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../quiz/presentation/screens/quiz_screen.dart';
 import '../cubit/favorite_tests_cubit.dart';
 import '../cubit/favorite_tests_state.dart';
+import '../../../quiz/presentation/screens/quiz_screen.dart';
 
 class FavoriteTestsScreen extends StatelessWidget {
   final int teacherId;
@@ -17,7 +17,7 @@ class FavoriteTestsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Tests by $teacherName')),
+      appBar: AppBar(title: Text('Favorite Tests by $teacherName')),
       body: BlocProvider(
         create: (context) =>
             FavoriteTestsCubit()..fetchFavoriteTests(teacherId),
@@ -41,9 +41,13 @@ class FavoriteTestsScreen extends StatelessWidget {
                   return Card(
                     margin: const EdgeInsets.all(10),
                     child: ListTile(
-                      leading: const Icon(Icons.quiz_outlined),
-                      title: Text('Test #${test.testId}'),
+                      leading: const Icon(
+                        Icons.quiz_outlined,
+                        color: Colors.amber,
+                      ),
+                      title: Text('Favorite Test #${test.testId}'),
                       subtitle: Text('${test.questions.length} Questions'),
+                      trailing: const Icon(Icons.arrow_forward_ios),
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
